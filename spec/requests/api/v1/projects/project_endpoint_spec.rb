@@ -15,8 +15,6 @@ describe '/api/v1' do
       expect(neighborhoods[0]['title']).to be_a(String)
       expect(neighborhoods[0]['description']).to be_a(String)
       expect(neighborhoods[0]['photo']).to be_a(String)
-      expect(neighborhoods[0]['created_at']).to be_a(String)
-      expect(neighborhoods[0]['updated_at']).to be_a(String)
     end
   end
 end

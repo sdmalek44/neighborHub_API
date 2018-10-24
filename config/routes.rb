@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  get '*other', to: redirect('/')
+  # get '*other', to: redirect('/')
 end

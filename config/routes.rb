@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-
-  # get '*other', to: redirect('/')
+  root 'welcome#index'
 end

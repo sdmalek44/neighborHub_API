@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_014207) do
+ActiveRecord::Schema.define(version: 2018_10_24_013532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,15 @@ ActiveRecord::Schema.define(version: 2018_10_24_014207) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "district_id"
+    t.bigint "district_id"
     t.string "email"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["district_id"], name: "index_users_on_district_id"
   end
 
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
+  add_foreign_key "users", "districts"
 end

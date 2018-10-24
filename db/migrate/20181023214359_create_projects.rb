@@ -4,7 +4,6 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :description
       t.string :photo
-      t.integer :project_owner_id
 
       t.timestamps
     end

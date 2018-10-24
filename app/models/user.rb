@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates_presence_of :name, :neighborhood_id, :email
-  belongs_to :project
-  has_many :projects, class_name: 'Project', foreign_key: :project_owner_id
+  validates_presence_of :name, :district_id, :email
+  has_many :user_projects
+  has_many :projects, through: :user_projects
 end

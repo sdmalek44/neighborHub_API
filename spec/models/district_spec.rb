@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Neighborhood, type: :model do
-  describe "validations" do
+RSpec.describe District, type: :model do
+  describe 'validations' do
     it {should validate_presence_of(:name)}
   end
 end

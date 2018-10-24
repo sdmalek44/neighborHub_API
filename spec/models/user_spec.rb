@@ -3,6 +3,7 @@ require 'rails_helper'
 describe User, type: :model do
   context 'relationships' do
     it {should have_many :projects}
+    it {should belong_to :district}
   end
 
   context 'verifications' do

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'welcome#index'
 
   namespace :api do
@@ -8,5 +7,4 @@ Rails.application.routes.draw do
       resources :projects, only: [:index]
     end
   end
-
 end

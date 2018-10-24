@@ -1,4 +1,4 @@
-class Api::V1::NeighborhoodsController < ApplicationController
+class Api::V1::NeighborhoodsController < ApiController
 
   def index
     render json: District.all

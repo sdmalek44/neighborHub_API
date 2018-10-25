@@ -19,6 +19,7 @@ gem 'faraday'
 gem 'figaro'
 gem 'active_model_serializers', "~> 0.10.0"
 gem 'factory_bot_rails'
+gem 'rack-cors', require: 'rack/cors'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -8,13 +8,13 @@ describe '/api/v1' do
 
       expect(response).to be_successful
 
-      neighborhoods = JSON.parse(response.body)
+      projects = JSON.parse(response.body)
 
-      expect(neighborhoods.count).to eq(4)
-      expect(neighborhoods[0]['id']).to eq(1)
-      expect(neighborhoods[0]['title']).to be_a(String)
-      expect(neighborhoods[0]['description']).to be_a(String)
-      expect(neighborhoods[0]['photo']).to be_a(String)
+      expect(projects.count).to eq(4)
+      expect(projects[0]['id']).to eq(1)
+      expect(projects[0]['title']).to be_a(String)
+      expect(projects[0]['description']).to be_a(String)
+      expect(projects[0]['photo']).to be_a(String)
     end
   end
 end

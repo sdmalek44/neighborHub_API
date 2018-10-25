@@ -1,3 +1,25 @@
 <h1>Welcome to Neighborhood</h1>
 
 <h2>Endpoints:</h2>
+<p>GET /api/v1/neighborhoods - returns id and name for all neighborhoods(districts)</p>
+<p>GET /api/v1/neighborhoods/:id - returns is and name for one neighborhood, along with all projects for that neighborhood including id, title, description, and photo(url)</p>
+<p>GET /api/v1/projects - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.</p>
+<p>GET /api/v1/users - returns id, first_name, last_name, username, district_id, email, and photo url for all users</p>
+<p>GET /api/v1/users/:user_id/projects - returns all projects for user with user_id, including resources</p>
+
+<p>POST /api/v1/users/:user_id/projects - needs to be in the following format:<br>
+  {
+    project: {
+      title: "build a statue",
+      description: "We out here building a statue",
+      photo: "https://aphotoofadamnstatue.com/statue",
+      resources: [
+        {
+          name: "500 lbs of concrete",
+        },
+        {
+          name: "100 laborers"
+        }
+      ]
+    }
+  }</p>

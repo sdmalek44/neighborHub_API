@@ -60,5 +60,39 @@ describe '/api/v1' do
       expect(Project.all.length).to eq(1)
       expect(Resource.all.length).to eq(2)
     end
+    it 'POST /api/v1/users/:user_id/projects' do
+      create(:district)
+      user = create(:user)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+      payload = {
+        project: {
+          description: "We out here building a statue",
+          photo: "https://aphotoofadamnstatue.com/statue",
+          resources: [
+            {
+              name: "500 lbs of concrete",
+            },
+            {
+              name: "100 laborers"
+            }
+          ]
+        }
+      }
+
+      post "/api/v1/users/#{user.id}/projects", params: payload.to_json, headers: headers
+
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      # expect(response.status).to eq(400)
+
+      expect(message[:message]).to eq("Invalid request. Try again!")
+      expect(Project.all.length).to eq(0)
+      expect(Resource.all.length).to eq(0)
+    end
   end
 end

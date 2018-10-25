@@ -6,10 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-District.create(name: 'Wash Park')
-District.create(name: 'Grove Street')
-District.create(name: 'LoDo')
-District.create(name: 'LoHi')
+require 'csv'
+
+CSV.foreach('./db/csv/statistical_neighborhoods.csv', headers: true, header_converters: :symbol) do |district|
+  District.create(name: district[:nbhd_name])
+end
+
+#
+# District.create(name: 'Wash Park')
+# District.create(name: 'Grove Street')
+# District.create(name: 'LoDo')
+# District.create(name: 'LoHi')
 
 User.create(first_name: 'Bob',
             last_name: 'Jones',

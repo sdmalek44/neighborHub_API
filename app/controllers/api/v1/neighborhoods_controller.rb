@@ -1,7 +1,7 @@
 class Api::V1::NeighborhoodsController < ApiController
 
   def index
-    render json: District.all
+    render json: District.all.order(:name)
   end
 
   def show

@@ -1,0 +1,16 @@
+require 'rails_helper'
+
+describe 'GET /api/v1/neighborhoods/:id/projects' do
+  it 'can get a list of all projects for a neighborhood' do
+    hood = create(:district)
+    create_list(:project, 4)
+
+    get "/api/v1/neighborhoods/#{hood.id}/projects"
+
+    expect(response).to be_successful
+
+    projects = JSON.parse(response.body)
+
+    expect(projects.count).to eq(4)
+  end
+end

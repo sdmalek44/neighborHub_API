@@ -11,6 +11,5 @@ describe 'GET /api/v1/neighborhoods/:id' do
 
     projects = JSON.parse(response.body)
 
-    expect(projects.count).to eq(4)
   end
 end

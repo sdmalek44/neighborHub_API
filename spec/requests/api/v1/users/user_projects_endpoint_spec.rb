@@ -25,5 +25,40 @@ describe '/api/v1' do
       expect(projects[0][:resources][0][:name]).to be_a(String)
       expect(projects[0][:resources][0][:status]).to be_a(String)
     end
+    it 'POST /api/v1/users/:user_id/projects' do
+      create(:district)
+      user = create(:user)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+      payload = {
+        project: {
+          title: "build a statue",
+          description: "We out here building a statue",
+          photo: "https://aphotoofadamnstatue.com/statue",
+          resources: [
+            {
+              name: "500 lbs of concrete",
+            },
+            {
+              name: "100 laborers"
+            }
+          ]
+        }
+      }
+
+      post "/api/v1/users/#{user.id}/projects", params: payload.to_json, headers: headers
+
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+
+      expect(message[:message]).to eq("Successfully added project '#{payload[:project][:title]}'!")
+      expect(Project.all.length).to eq(1)
+      expect(Resource.all.length).to eq(2)
+    end
   end
 end

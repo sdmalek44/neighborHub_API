@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :projects, only: [:index]
       resources :users, only: [:index] do
         get '/projects', to: 'users/projects#index'
+        post '/projects', to: 'users/projects#create'
       end
     end
   end

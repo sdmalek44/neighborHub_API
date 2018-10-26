@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def resources_valid?
-    new_resources = resources.select { |resource| resource['id'] && resource['name'] && resource['status'] }
+    new_resources = resources.select { |resource| resource['id'] }
     new_resources.length == resources.length
   end
 end

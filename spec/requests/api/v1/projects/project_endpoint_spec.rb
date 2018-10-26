@@ -63,5 +63,40 @@ describe '/api/v1' do
       expect(updated_resource.name).to eq(payload[:project][:resources][0][:name])
       expect(updated_resource.status).to eq(payload[:project][:resources][0][:status])
     end
+    it 'PATCH /api/v1/projects/:id sad path' do
+      project = create(:project)
+      resources = create_list(:resource, 2)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+
+      payload = { project: {
+                    title: "build a statue",
+                    description: "We out here building a statue",
+                    photo: "https://aphotoofadamnstatue.com/statue",
+                    resources: [
+                      {
+                        id: resources[0].id,
+                        name: "500 lbs of concrete",
+                        status: "fulfilled"
+                      },
+                      {
+                        name: "100 laborers",
+                        status: "fulfilled"
+                      }
+                    ]
+                  }
+                }
+      patch "/api/v1/projects/#{project.id}", params: payload.to_json, headers: headers
+
+      expect(response.status).to eq(400)
+
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(message[:message]).to eq("Invalid Input. Try Again")
+    end
   end
 end

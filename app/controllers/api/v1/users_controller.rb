@@ -4,4 +4,8 @@ class Api::V1::UsersController < ApiController
     render json: User.all
   end
 
+  def create
+    
+  end
+
 end

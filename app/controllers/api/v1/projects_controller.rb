@@ -6,8 +6,14 @@ class Api::V1::ProjectsController < ApiController
 
   def update
     project = Project.find(params[:id])
-    if resources_valid? && project && project.update(project_params)
-      resources.each { |resource| project.resources.find(resource[:id]).update(resource.permit(:name, :status)) }
+    new_resources = resources.select do |resource|
+      if resource['id'] && (resource['name'] || resource['status']) && project
+        project.resources.find(resource[:id]).update(resource.permit(:name, :status))
+      elsif resource['name'] && resource['id'].nil? && resource['status'].nil? && project
+        project.resources.create(resource.permit(:name, :status))
+      end
+    end
+    if resources_valid?(new_resources) && project && project.update(project_params)
       render json: {message: "Successfully Updated #{project.title}!"}
     else
       render json: {message: "Invalid Input. Try Again"} , status: 400
@@ -21,11 +27,11 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def resources
-    params[:project][:resources]
+    return params[:project][:resources] if params[:project][:resources]
+    []
   end
 
-  def resources_valid?
-    new_resources = resources.select { |resource| resource['id'] }
-    new_resources.length == resources.length
+  def resources_valid?(new_resources)
+    resources.length == new_resources.length
   end
 end

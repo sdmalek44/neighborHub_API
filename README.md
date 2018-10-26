@@ -7,28 +7,30 @@
 
 `GET /api/v1/projects` - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.  
 
-`PATCH /api/v1/projects/:id` - Updates a project and/or it's resources. It needs to be in the following format:  
+`PATCH /api/v1/projects/:id` - Updates a project and/or it's resources. If a resource is entered with only a name, a new one will be created, if you give it an id of an existing resource then it will be updated.  
+In the example below, the first two resources will be updated and the last created.   
+It needs to be in the following format:  
 ```
-  {
-    project:
-      {
-        title: "build a statue",
-        description: "We out here building a statue",
-        photo: "https://aphotoofastatue.com/statue",
-        resources: [
-          {
-            id: resources[0].id,
-            name: "500 lbs of concrete",
-            status: "fulfilled"
-          },
-          {
-            id: resources[1].id,
-            name: "100 laborers",
-            status: "fulfilled"
+{ project: {
+              title: "build a statue",
+              description: "We out here building a statue",
+              photo: "https://aphotoofadamnstatue.com/statue",
+              resources: [
+                {
+                  id: 1,
+                  status: "fulfilled"
+                },
+                {
+                  id: 2,
+                  name: "100 laborers",
+                  status: "fulfilled"
+                },
+                {
+                  name: "15 beers"
+                }
+              ]
+            }
           }
-        ]
-      }
-  }
 ```
 `GET /api/v1/users` - returns id, first_name, last_name, username, district_id, email, and photo url for all users  
 

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :neighborhoods, only: [:index, :show]
-      resources :projects, only: [:index, :update]
+      resources :projects, only: [:index, :update] do
+        get '/comments', to: 'projects/comments#index'
+      end
 
       resources :users, only: [:index] do
         get '/projects', to: 'users/projects#index'

@@ -39,7 +39,7 @@ Project.create(title: 'Fix my door',
 
 Project.create(title: 'Build a bench',
               description: 'Build a new bench for bustop')
-              
+
 Project.create(title: 'Paint the community center',
               description: "The community center looks crappy, let's paint it!")
 
@@ -57,3 +57,10 @@ Resource.create(name: 'Lumber', project_id: 3)
 Resource.create(name: 'Screwdriver and Screws', project_id: 3)
 Resource.create(name: 'Paint', project_id: 4)
 Resource.create(name: 'Paintbrushes, dropcloths, etc', project_id: 4)
+
+
+Comment.create(content: 'hey heres $20', project_id: 1, user_id: 1)
+Comment.create(content: 'I have a lawnmower you can use', user_id: 2, project_id: 2)
+Comment.create(content: 'I can give you some help saturday', user_id: 3, project_id: 3)
+Comment.create(content: 'I cant help but I can watch', user_id: 4, project_id: 4)
+Comment.create(content: 'What day are you planning on?', user_id: 2, project_id: 1)

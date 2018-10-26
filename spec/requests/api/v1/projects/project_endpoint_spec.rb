@@ -33,7 +33,7 @@ describe '/api/v1' do
                     resources: [
                       {
                         id: resources[0].id,
-                        name: "500 lbs of concrete",
+                        # name: "500 lbs of concrete",
                         status: "fulfilled"
                       },
                       {
@@ -60,7 +60,7 @@ describe '/api/v1' do
 
       expect(updated_project.resources.length).to eq(2)
       expect(updated_resource.id).to eq(resources[0].id)
-      expect(updated_resource.name).to eq(payload[:project][:resources][0][:name])
+      expect(updated_resource.name).to eq(resources[0].name)
       expect(updated_resource.status).to eq(payload[:project][:resources][0][:status])
     end
     it 'PATCH /api/v1/projects/:id sad path' do

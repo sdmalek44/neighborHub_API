@@ -32,17 +32,16 @@ User.create(first_name: 'Kate',
             photo: 'photo.com')
 
 Project.create(title: 'Mow my grass',
-              description: 'Mow the entire lawn, front and back',
-              photo: 'photo.com')
+              description: 'Mow the entire lawn, front and back')
+
 Project.create(title: 'Fix my door',
-              description: 'Fix the hinges on front door',
-              photo: 'photo.com')
+              description: 'Fix the hinges on front door')
+
 Project.create(title: 'Build a bench',
-              description: 'Build a new bench for bustop',
-              photo: 'photo.com')
+              description: 'Build a new bench for bustop')
+              
 Project.create(title: 'Paint the community center',
-              description: "The community center looks crappy, let's paint it!",
-              photo: 'photo.com')
+              description: "The community center looks crappy, let's paint it!")
 
 UserProject.create(user_id: 1, project_id: 1, project_role: 1)
 UserProject.create(user_id: 2, project_id: 2, project_role: 1)

@@ -6,7 +6,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :username
       t.references :district, foreign_key: true
       t.string :email
-      t.string :photo
+      t.string :photo, default: 'https://screenshotlayer.com/images/assets/placeholder.png'
+      t.string :token
 
       t.timestamps
     end

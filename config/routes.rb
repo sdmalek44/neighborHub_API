@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :neighborhoods, only: [:index, :show]
-      resources :projects, only: [:index]
+      resources :projects, only: [:index, :update]
+
       resources :users, only: [:index] do
         get '/projects', to: 'users/projects#index'
         post '/projects', to: 'users/projects#create'

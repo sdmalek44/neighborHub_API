@@ -40,7 +40,7 @@
     project: {
       title: "build a statue",
       description: "We out here building a statue",
-      photo: "https://aphotoofadamnstatue.com/statue",
+      photo: "https://aphotoofastatue.com/statue",
       resources: [
         {
           name: "500 lbs of concrete",

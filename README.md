@@ -7,8 +7,7 @@
 
 `GET /api/v1/projects` - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.  
 
-`PATCH /api/v1/projects/:id` - update a project and/or it's resources  
-needs to be in the following format:  
+`PATCH /api/v1/projects/:id` - Updates a project and/or it's resources. It needs to be in the following format:  
 ```
   {
     project:

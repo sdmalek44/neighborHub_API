@@ -22,5 +22,13 @@ describe '/api/v1' do
       expect(new_comment[:updated_at]).to be_a(String)
       expect(new_comment[:created_at]).to be_a(String)
     end
+    it 'puts in wrong project id for comments' do
+      get "/api/v1/projects/5/comments"
+
+      expect(response.status).to eq(404)
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(message[:message]).to eq('Project Not Found!')
+    end
   end
 end

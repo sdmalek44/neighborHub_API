@@ -11,7 +11,7 @@ class Api::V1::GoogleUsersController < ApiController
     elsif user = User.create(oauth_params)
       render json: user if user.save
     end
-    unless user.save
+    unless user && user.save
       render json: {message: "Incorrect info! Could not find or create"}, status: 400
     end
   end

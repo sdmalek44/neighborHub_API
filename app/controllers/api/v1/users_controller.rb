@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApiController
       user.password = params['password']
       user.save!
     end
-    unless user.save
+    unless user && user.save && user.password_digest.present?
       user = {message: 'Could not create user!'}
       status = 400
     end

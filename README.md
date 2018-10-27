@@ -34,6 +34,20 @@ It needs to be in the following format:
 ```
 `GET /api/v1/users` - returns id, first_name, last_name, username, district_id, email, and photo url for all users
 
+`POST /api/v1/app_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app  
+* if user already exists, it updates password  
+* if user doesn't exist and passed all correct params it creates new user  
+```
+  {
+    first_name: 'steve',
+    last_name: 'malek',
+    email: 'stevemalek@gmail.com',
+    username: 'stevie12',
+    district_id: neighborhood.id,
+    password: 'bluesky'
+  }
+```
+
 `POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user  
 * creates and returns user if user doesn't exist
 * returns the user if user already exists  

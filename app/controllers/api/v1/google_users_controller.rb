@@ -1,16 +1,5 @@
-class Api::V1::UsersController < ApiController
+class Api::V1::GoogleUsersController < ApiController
 
-  def index
-    render json: User.all
-  end
-
-  def show
-    if User.exists?(params[:id])
-      render json: User.find(params[:id])
-    else
-      render status: 404
-    end
-  end
 
   def create
     user = User.find_by_email_and_token(oauth_params[:email], oauth_params[:token])
@@ -29,7 +18,4 @@ class Api::V1::UsersController < ApiController
   def oauth_params
     params.permit(:first_name, :last_name, :email, :token, :district_id, :username)
   end
-
-
-
 end

@@ -37,6 +37,7 @@ It needs to be in the following format:
 `POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user  
 * creates and returns user if user doesn't exist
 * returns the user if user already exists  
+* send json in the following format:  
 ```
   {
     first_name: 'steve',

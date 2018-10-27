@@ -17,7 +17,7 @@ describe 'GET /api/v1/users/:id' do
     user = JSON.parse(response.body)
 
     expect(user['id']).to eq(user1.id)
-    expect(user['district_id']).to eq(hood.id)
+    expect(user['neighborhood']).to eq(hood.name)
     expect(user['first_name']).to eq(user1.first_name)
     expect(user['last_name']).to eq(user1.last_name)
     expect(user['username']).to eq(user1.username)

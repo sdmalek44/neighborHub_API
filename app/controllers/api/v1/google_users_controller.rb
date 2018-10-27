@@ -2,8 +2,11 @@ class Api::V1::GoogleUsersController < ApiController
 
 
   def create
-    user = User.find_by_email_and_token(oauth_params[:email], oauth_params[:token])
-    if user
+    user = User.find_by_email(oauth_params[:email])
+    if user && user.password_digest && user.token.nil?
+      user.update(token: oauth_params[:token])
+      render json: user
+    elsif user && user.token == oauth_params[:token]
       render json: user
     elsif user = User.create(oauth_params)
       render json: user if user.save

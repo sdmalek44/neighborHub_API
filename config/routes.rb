@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       end
 
       post '/users', to: 'google_users#create'
+      post '/app_users', to: 'users#create'
     end
   end
 end

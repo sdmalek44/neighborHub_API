@@ -8,10 +8,13 @@ Rails.application.routes.draw do
         get '/comments', to: 'projects/comments#index'
       end
 
-      resources :users, only: [:index, :show, :create] do
+      resources :users, only: [:index, :show] do
         get '/projects', to: 'users/projects#index'
         post '/projects', to: 'users/projects#create'
       end
+
+      post '/users', to: 'google_users#create'
+      post '/app_users', to: 'users#create'
     end
   end
 end

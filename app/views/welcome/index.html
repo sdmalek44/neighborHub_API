@@ -43,3 +43,32 @@
       ]
     }
   }</p>
+
+  <p>POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user</p>
+  <li>creates and returns user if user doesn't exist</li>
+  <li>returns the user if user already exists</li>
+  <li>send json in the following format:</li>
+  <p>
+    {
+      first_name: 'steve',
+      last_name: 'malek',
+      email: 'stevanator@gmail.com',
+      username: 'stevie12',
+      district_id: 1,
+      token: 'asdfsdfasdfasdfafsdfadfa'
+    }
+  </p>
+
+    <p>POST /api/v1/app_users - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app</p>
+    <li>if user already exists, it updates password</li>
+    <li>if user doesn't exist and passed all correct params it creates new user</li>
+    <p>
+      {
+        first_name: 'steve',
+        last_name: 'malek',
+        email: 'stevemalek@gmail.com',
+        username: 'stevie12',
+        district_id: neighborhood.id,
+        password: 'bluesky'
+      }
+    </p>

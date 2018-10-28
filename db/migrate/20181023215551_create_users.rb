@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :photo, default: 'https://screenshotlayer.com/images/assets/placeholder.png'
       t.string :token
+      t.string :password_digest
 
       t.timestamps
     end

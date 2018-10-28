@@ -3,5 +3,5 @@ class UserProject < ApplicationRecord
   belongs_to :user
   belongs_to :project
 
-  enum project_role: [ :contributer, :owner ]
+  enum project_role: [ :owner, :contributer ]
 end

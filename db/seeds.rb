@@ -24,12 +24,7 @@ User.create(first_name: 'Fred',
             district_id: 3,
             email: "fredbrown@email.com",
             photo: 'photo.com')
-User.create(first_name: 'Kate',
-            last_name: 'Geen',
-            username: 'kategreen',
-            district_id: 4,
-            email: "kategreen@email.com",
-            photo: 'photo.com')
+User.create(first_name: 'Kate',last_name: 'Geen', username: 'kategreen',district_id: 4, email: "kategreen@email.com", photo: 'photo.com', password: 'fun')
 
 Project.create(title: 'Mow my grass',
               description: 'Mow the entire lawn, front and back')

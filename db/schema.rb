@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_030252) do
     t.string "email"
     t.string "photo", default: "https://screenshotlayer.com/images/assets/placeholder.png"
     t.string "token"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["district_id"], name: "index_users_on_district_id"

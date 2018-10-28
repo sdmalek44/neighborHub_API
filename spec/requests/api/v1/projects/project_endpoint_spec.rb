@@ -105,5 +105,26 @@ describe '/api/v1' do
 
       expect(message[:message]).to eq("Invalid Input. Try Again")
     end
+    it 'PATCH /api/v1/projects/:id sad path' do
+      project = create(:project)
+      resources = create_list(:resource, 2)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+
+      payload = { project: {
+                    title: "build a statue",
+                    description: "We out here building a statue",
+                    photo: "https://aphotoofadamnstatue.com/statue"
+                  }
+                }
+      patch "/api/v1/projects/#{project.id}", params: payload.to_json, headers: headers
+
+      expect(response.status).to eq(200)
+
+    end
   end
 end

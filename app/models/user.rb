@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :comments
 
   def password
-    @password ||= Password.new(password_hash)
+    @password ||= Password.new(password_digest)
   end
 
   def password=(new_password)

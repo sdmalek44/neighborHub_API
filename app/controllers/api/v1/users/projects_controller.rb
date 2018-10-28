@@ -23,6 +23,7 @@ class Api::V1::Users::ProjectsController < ApiController
   end
 
   def resources
+    return [] unless params[:project][:resources]
     params[:project][:resources]
   end
 

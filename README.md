@@ -32,6 +32,19 @@ It needs to be in the following format:
             }
           }
 ```
+* if you just wanted to update a status to fulfilled:
+```
+{
+  "project": {
+              "resources": [
+                {
+                  "id": 1,
+                  "status": 'fulfilled'
+                }
+              ]
+            }
+}
+```
 `GET /api/v1/users` - returns id, first_name, last_name, username, district_id, email, and photo url for all users
 
 `POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app  

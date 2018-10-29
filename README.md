@@ -34,7 +34,7 @@ It needs to be in the following format:
 ```
 `GET /api/v1/users` - returns id, first_name, last_name, username, district_id, email, and photo url for all users
 
-`POST /api/v1/app_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app  
+`POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app  
 * if user already exists, it updates password and signs user in   
 * if user doesn't exist and passed all correct params it creates new user  
 ```
@@ -48,7 +48,7 @@ It needs to be in the following format:
   }
 ```
 
-`POST /api/v1/users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user  
+`POST /api/v1/google_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user  
 * creates and returns user if user doesn't exist
 * returns the user if user already exists  
 * send json in the following format:  
@@ -59,7 +59,7 @@ It needs to be in the following format:
     email: 'stevanator@gmail.com',
     username: 'stevie12',
     district_id: 1,
-    token: 'asdfsdfasdfasdfafsdfadfa'
+    password: 'asdfsdfasdfasdfafsdfadfa'
   }
 ```
 
@@ -102,8 +102,3 @@ It needs to be in the following format:
     }
   ]
 ```
-expect(new_comment[:id]).to eq(comment.id)
-expect(new_comment[:author]).to be_a(String)
-expect(new_comment[:content]).to eq(comment.content)
-expect(new_comment[:updated_at]).to be_a(String)
-expect(new_comment[:created_at]).to be_a(String)

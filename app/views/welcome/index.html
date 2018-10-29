@@ -72,3 +72,22 @@
         password: 'bluesky'
       }
     </p>
+
+    <p>GET /api/v1/projects/:project_id/comments - get all comments for a specific projects</p>
+    <li>will return comment id, author username, content, and timestamps</li>
+
+    <p>  [
+        { 'id': 1,
+          'author': 'bob',
+          'content': 'blah blah',
+          'created_at': 'some time',
+          'updated_at': 'some time'
+        },
+        { 'id': 2,
+          'author': 'dan',
+          'content': 'blah blah',
+          'created_at': 'some time',
+          'updated_at': 'some time'
+        }
+      ]
+    </p>

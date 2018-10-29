@@ -14,20 +14,14 @@ class Api::V1::UsersController < ApiController
 
   def create
     status = 200
-    user = User.find_by(oauth_params)
-    if user && user.password_digest.nil? && params['password']
-      user.password = params['password']
-      user.save!
-    elsif user.nil? && all_required? && params['password']
+    user = User.find_by_email(oauth_params[:email])
+    if user.nil? && all_required?
       user = User.create(oauth_params)
-      user.password = params['password']
-      user.save!
-    elsif user && user.password_digest.present? && !(user.password == BCrypt::Password.create(params['password']))
-      user = {message: 'Password Incorrect'}
+    elsif user && !(user.authenticate(oauth_params[:password]))
+      user = {message: 'Incorrect login method!'}
       status = 400
-    end
-    unless user && user.class == Hash || user && user.save && user.password_digest.present?
-      user = {message: 'Could not create user!'}
+    elsif !(all_required?)
+      user = {message: 'Incorrect parameters given!'}
       status = 400
     end
     render json: user, status: status
@@ -36,11 +30,11 @@ class Api::V1::UsersController < ApiController
   private
 
   def all_required?
-    oauth_params.keys.count == 5
+    oauth_params.keys.count == 6
   end
 
   def oauth_params
-    params.permit(:first_name, :last_name, :email, :district_id, :username)
+    params.permit(:first_name, :last_name, :email, :district_id, :username, :password)
   end
 
 end

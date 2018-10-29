@@ -38,7 +38,7 @@ describe '/api/v1/users' do
                 email: 'stevemalek@gmail.com',
                 username: 'stevie12',
                 district_id: neighborhood.id,
-                token: 'asdf'
+                password: 'asdf'
               }
 
       post '/api/v1/users', params: body.to_json, headers: headers
@@ -55,8 +55,6 @@ describe '/api/v1/users' do
     it 'user exists through password create but not oauth' do
       neighborhood = create(:district)
       user = create(:user)
-      user.password = 'thing'
-      user.save!
 
       headers = {
         "Content-Type": 'application/json',
@@ -69,19 +67,14 @@ describe '/api/v1/users' do
                 email: user.email,
                 username: user.username,
                 district_id: neighborhood.id,
-                token: 'asdf'
+                password: 'asdf'
               }
 
       post '/api/v1/users', params: body.to_json, headers: headers
 
       new_user = JSON.parse(response.body, symbolize_names: true)
 
-      expect(new_user[:id]).to eq(1)
-      expect(new_user[:first_name]).to eq(user.first_name)
-      expect(new_user[:last_name]).to eq(user.last_name)
-      expect(new_user[:username]).to eq(user.username)
-      expect(new_user[:email]).to eq(user.email)
-      expect(new_user[:neighborhood]).to eq(neighborhood.name)
+      expect(new_user[:message]).to eq('Incorrect login method!')
     end
     it 'not all params passed in' do
       neighborhood = create(:district)
@@ -103,11 +96,13 @@ describe '/api/v1/users' do
 
       new_user = JSON.parse(response.body, symbolize_names: true)
       expect(response.status).to eq(400)
-      expect(new_user[:message]).to eq("Incorrect info! Could not find or create")
+      expect(new_user[:message]).to eq("Incorrect parameters given!")
     end
-    it 'returns user if exists' do
+    it 'returns user if exists and correct login method' do
+      password = 'thing'
       neighborhood = create(:district)
       user = create(:user)
+      user.update(password: password)
 
       headers = {
         "Content-Type": 'application/json',
@@ -120,7 +115,7 @@ describe '/api/v1/users' do
                 email: user.email,
                 username: user.username,
                 district_id: user.district.id,
-                token: user.token
+                password: password
               }
 
       post '/api/v1/users', params: body.to_json, headers: headers

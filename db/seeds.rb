@@ -47,12 +47,12 @@ Project.create(title: 'Build a bench',
 Project.create(title: 'Paint the community center',
               description: "The community center looks crappy, let's paint it!")
 
-UserProject.create(user_id: 1, project_id: 1, project_role: 1)
-UserProject.create(user_id: 2, project_id: 2, project_role: 1)
-UserProject.create(user_id: 3, project_id: 3, project_role: 1)
-UserProject.create(user_id: 4, project_id: 4, project_role: 1)
-UserProject.create(user_id: 2, project_id: 1)
-UserProject.create(user_id: 4, project_id: 3)
+UserProject.create(user_id: 1, project_id: 1)
+UserProject.create(user_id: 2, project_id: 2)
+UserProject.create(user_id: 3, project_id: 3)
+UserProject.create(user_id: 4, project_id: 4)
+UserProject.create(user_id: 2, project_id: 1, project_role: 1)
+UserProject.create(user_id: 4, project_id: 3, project_role: 1)
 
 Resource.create(name: 'Lawnmower', project_id: 1)
 Resource.create(name: 'Hammer', project_id: 2)

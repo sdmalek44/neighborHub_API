@@ -8,7 +8,7 @@ describe 'GET /api/v1/users/:id' do
                         last_name: 'Jones',
                         username: 'bobjones',
                         email: 'bobjones@email.com',
-                        token: 'password')
+                        password: 'password')
 
     get "/api/v1/users/#{user1.id}"
 
@@ -22,7 +22,6 @@ describe 'GET /api/v1/users/:id' do
     expect(user['last_name']).to eq(user1.last_name)
     expect(user['username']).to eq(user1.username)
     expect(user['email']).to eq(user1.email)
-    expect(user['token']).to eq(user1.token)
   end
   it 'returns 404 if not found' do
 

@@ -75,6 +75,7 @@ describe '/api/v1/users' do
       post '/api/v1/users', params: body.to_json, headers: headers
 
       new_user = JSON.parse(response.body, symbolize_names: true)
+      binding.pry
 
       expect(new_user[:id]).to eq(1)
       expect(new_user[:first_name]).to eq(user.first_name)

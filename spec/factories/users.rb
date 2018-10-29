@@ -5,5 +5,6 @@ FactoryBot.define do
     username { "ToMo" }
     district_id { 1 }
     email { "tomo@gmail.com" }
+    token {'12345'}
   end
 end

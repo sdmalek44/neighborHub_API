@@ -9,7 +9,7 @@ class Api::V1::GoogleUsersController < ApiController
     elsif user && !(user.authenticate(oauth_params[:password]))
       status = 400
       user = {message: 'Incorrect login method!'}
-    elsif !(all_required?)
+    elsif !user && !(all_required?)
       user = {message: 'Incorrect parameters given!'}
       status = 400
     end

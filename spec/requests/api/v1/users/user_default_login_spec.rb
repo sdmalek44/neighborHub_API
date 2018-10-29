@@ -53,7 +53,7 @@ describe '/api/v1/users' do
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Incorrect login method!')
+      expect(user[:message]).to eq('Incorrect login!')
 
 
       users = User.all
@@ -109,7 +109,7 @@ describe '/api/v1/users' do
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Incorrect login method!')
+      expect(user[:message]).to eq('Incorrect login!')
 
 
       users = User.all
@@ -140,7 +140,7 @@ describe '/api/v1/users' do
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Incorrect login method!')
+      expect(user[:message]).to eq('Incorrect login!')
 
 
       users = User.all

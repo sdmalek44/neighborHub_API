@@ -133,5 +133,30 @@ describe '/api/v1' do
       expect(response.status).to eq(200)
 
     end
+    it 'PATCH /api/v1/projects/:id sad path' do
+      project = create(:project)
+      resources = create_list(:resource, 2)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+
+      payload = { project: {
+                    resources: [
+                      {
+                        id: 1,
+                        status: 'fulfilled'
+                      }
+                    ]
+                  }
+                }
+      patch "/api/v1/projects/#{project.id}", params: payload.to_json, headers: headers
+
+      expect(response.status).to eq(200)
+      message = JSON.parse(response.body, symbolize_names: true)
+      expect(message[:message]).to eq("Successfully Updated #{project.title}!")
+    end
   end
 end

@@ -83,3 +83,27 @@ It needs to be in the following format:
     }
   }
 ```
+
+`GET /api/v1/projects/:project_id/comments` - get all comments for a specific projects
+* will return comment id, author username, content, and timestamps
+```
+  [
+    { 'id': 1,
+      'author': 'bob',
+      'content': 'blah blah',
+      'created_at': 'some time',
+      'updated_at': 'some time'
+    },
+    { 'id': 2,
+      'author': 'dan',
+      'content': 'blah blah',
+      'created_at': 'some time',
+      'updated_at': 'some time'
+    }
+  ]
+```
+expect(new_comment[:id]).to eq(comment.id)
+expect(new_comment[:author]).to be_a(String)
+expect(new_comment[:content]).to eq(comment.content)
+expect(new_comment[:updated_at]).to be_a(String)
+expect(new_comment[:created_at]).to be_a(String)

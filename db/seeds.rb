@@ -11,20 +11,29 @@ User.create(first_name: 'Bob',
             username: 'bobjones',
             district_id: 1,
             email: "bobjones@email.com",
-            photo: 'photo.com')
+            photo: 'photo.com',
+            token: '12345')
 User.create(first_name: 'Mary',
             last_name: 'Smith',
             username: 'marysmith',
             district_id: 2,
             email: "marysmith@email.com",
-            photo: 'photo.com')
+            photo: 'photo.com',
+            token: '23456')
 User.create(first_name: 'Fred',
             last_name: 'Brown',
             username: 'fredbrown',
             district_id: 3,
             email: "fredbrown@email.com",
-            photo: 'photo.com')
-User.create(first_name: 'Kate',last_name: 'Geen', username: 'kategreen',district_id: 4, email: "kategreen@email.com", photo: 'photo.com', password: 'fun')
+            photo: 'photo.com',
+            token: '34567')
+User.create(first_name: 'Kate',
+            last_name: 'Geen',
+            username: 'kategreen',
+            district_id: 4,
+            email: "kategreen@email.com",
+            photo: 'photo.com',
+            token: 'fun')
 
 Project.create(title: 'Mow my grass',
               description: 'Mow the entire lawn, front and back')
@@ -38,12 +47,12 @@ Project.create(title: 'Build a bench',
 Project.create(title: 'Paint the community center',
               description: "The community center looks crappy, let's paint it!")
 
-UserProject.create(user_id: 1, project_id: 1, project_role: 1)
-UserProject.create(user_id: 2, project_id: 2, project_role: 1)
-UserProject.create(user_id: 3, project_id: 3, project_role: 1)
-UserProject.create(user_id: 4, project_id: 4, project_role: 1)
-UserProject.create(user_id: 2, project_id: 1)
-UserProject.create(user_id: 4, project_id: 3)
+UserProject.create(user_id: 1, project_id: 1)
+UserProject.create(user_id: 2, project_id: 2)
+UserProject.create(user_id: 3, project_id: 3)
+UserProject.create(user_id: 4, project_id: 4)
+UserProject.create(user_id: 2, project_id: 1, project_role: 1)
+UserProject.create(user_id: 4, project_id: 3, project_role: 1)
 
 Resource.create(name: 'Lawnmower', project_id: 1)
 Resource.create(name: 'Hammer', project_id: 2)

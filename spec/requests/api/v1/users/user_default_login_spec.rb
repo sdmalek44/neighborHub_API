@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe '/api/v1/app_users' do
-  context 'POST /api/v1/app_users' do
+describe '/api/v1/users' do
+  context 'POST /api/v1/users' do
     it 'can create a new user' do
       neighborhood = create(:district)
 
@@ -19,7 +19,7 @@ describe '/api/v1/app_users' do
                 password: 'bluesky'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -48,7 +48,7 @@ describe '/api/v1/app_users' do
                 password: 'bluesky'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -76,7 +76,7 @@ describe '/api/v1/app_users' do
                 district_id: neighborhood.id
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -104,7 +104,7 @@ describe '/api/v1/app_users' do
                 district_id: neighborhood.id
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -135,7 +135,7 @@ describe '/api/v1/app_users' do
                 password: 'lotafun'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 

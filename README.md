@@ -35,7 +35,7 @@ It needs to be in the following format:
 `GET /api/v1/users` - returns id, first_name, last_name, username, district_id, email, and photo url for all users
 
 `POST /api/v1/app_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app  
-* if user already exists, it updates password  
+* if user already exists, it updates password and signs user in   
 * if user doesn't exist and passed all correct params it creates new user  
 ```
   {

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe '/api/v1/app_users' do
-  context 'POST /api/v1/app_users' do
+describe '/api/v1/users' do
+  context 'POST /api/v1/users' do
     it 'can create a new user' do
       neighborhood = create(:district)
 
@@ -19,7 +19,7 @@ describe '/api/v1/app_users' do
                 password: 'bluesky'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -30,7 +30,7 @@ describe '/api/v1/app_users' do
       expect(user[:email]).to eq('stevemalek@gmail.com')
       expect(user[:neighborhood]).to eq(neighborhood.name)
     end
-    it 'user already exists' do
+    it 'user already exists but through oauth' do
       neighborhood = create(:district)
       user = create(:user)
 
@@ -48,16 +48,13 @@ describe '/api/v1/app_users' do
                 password: 'bluesky'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
-      expect(user[:id]).to eq(1)
-      expect(user[:first_name]).to eq('Tom')
-      expect(user[:last_name]).to eq('Morello')
-      expect(user[:username]).to eq('ToMo')
-      expect(user[:email]).to eq('tomo@gmail.com')
-      expect(user[:neighborhood]).to eq(neighborhood.name)
+      expect(response.status).to eq(400)
+      expect(user[:message]).to eq('Incorrect login method!')
+
 
       users = User.all
       expect(users.length).to eq(1)
@@ -79,12 +76,12 @@ describe '/api/v1/app_users' do
                 district_id: neighborhood.id
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Could not create user!')
+      expect(user[:message]).to eq('Incorrect parameters given!')
 
 
       users = User.all
@@ -107,12 +104,12 @@ describe '/api/v1/app_users' do
                 district_id: neighborhood.id
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Could not create user!')
+      expect(user[:message]).to eq('Incorrect login method!')
 
 
       users = User.all
@@ -138,12 +135,12 @@ describe '/api/v1/app_users' do
                 password: 'lotafun'
               }
 
-      post '/api/v1/app_users', params: body.to_json, headers: headers
+      post '/api/v1/users', params: body.to_json, headers: headers
 
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(400)
-      expect(user[:message]).to eq('Password Incorrect')
+      expect(user[:message]).to eq('Incorrect login method!')
 
 
       users = User.all

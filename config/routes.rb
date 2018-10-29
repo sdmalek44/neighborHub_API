@@ -13,8 +13,8 @@ Rails.application.routes.draw do
         post '/projects', to: 'users/projects#create'
       end
 
-      post '/users', to: 'google_users#create'
-      post '/app_users', to: 'users#create'
+      post '/google_users', to: 'google_users#create'
+      post '/users', to: 'users#create'
     end
   end
 end

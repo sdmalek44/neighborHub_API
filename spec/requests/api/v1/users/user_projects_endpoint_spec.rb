@@ -143,8 +143,6 @@ describe '/api/v1' do
           title: "build a statue",
           description: "We out here building a statue",
           photo: "https://aphotoofadamnstatue.com/statue",
-          resources: [
-          ]
         }
       }
 

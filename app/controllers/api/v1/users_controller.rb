@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApiController
 
   def create
     status = 200
-    user = User.find_by_email(oauth_params[:email])
+    user = User.find_by(oauth_params)
     if user && user.password_digest.nil? && params['password']
       user.password = params['password']
       user.save!
@@ -22,8 +22,11 @@ class Api::V1::UsersController < ApiController
       user = User.create(oauth_params)
       user.password = params['password']
       user.save!
+    elsif user && user.password_digest.present? && !(user.password == BCrypt::Password.create(params['password']))
+      user = {message: 'Password Incorrect'}
+      status = 400
     end
-    unless user && user.save && user.password_digest.present?
+    unless user && user.class == Hash || user && user.save && user.password_digest.present?
       user = {message: 'Could not create user!'}
       status = 400
     end

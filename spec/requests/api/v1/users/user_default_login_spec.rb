@@ -118,5 +118,36 @@ describe '/api/v1/app_users' do
       users = User.all
       expect(users.length).to eq(1)
     end
+    it 'user exists wrong password given' do
+      neighborhood = create(:district)
+      user = create(:user)
+      user.password = 'things'
+      user.save!
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+      body = {
+                first_name: 'Tom',
+                last_name: 'Morello',
+                email: 'tomo@gmail.com',
+                username: 'ToMo',
+                district_id: neighborhood.id,
+                password: 'lotafun'
+              }
+
+      post '/api/v1/app_users', params: body.to_json, headers: headers
+
+      user = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(user[:message]).to eq('Password Incorrect')
+
+
+      users = User.all
+      expect(users.length).to eq(1)
+    end
   end
 end

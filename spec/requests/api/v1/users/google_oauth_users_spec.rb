@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe '/api/v1/google_users' do
   context 'POST /api/v1/google_users' do
     it 'can create a new user' do

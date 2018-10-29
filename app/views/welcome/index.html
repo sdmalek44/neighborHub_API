@@ -25,6 +25,8 @@
               }
             }</p>
 <p>GET /api/v1/users - returns id, first_name, last_name, username, district_id, email, and photo url for all users</p>
+<p>PATCH /api/v1/users/:id - updates user info
+
 <p>GET /api/v1/users/:user_id/projects - returns all projects for user with user_id, including resources</p>
 
 <p>POST /api/v1/users/:user_id/projects - needs to be in the following format:<br>
@@ -44,50 +46,50 @@
     }
   }</p>
 
-  <p>POST /api/v1/google_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user</p>
-  <li>creates and returns user if user doesn't exist</li>
-  <li>returns the user if user already exists</li>
-  <li>send json in the following format:</li>
-  <p>
-    {
-      first_name: 'steve',
-      last_name: 'malek',
-      email: 'stevanator@gmail.com',
-      username: 'stevie12',
-      district_id: 1,
-      password: 'asdfsdfasdfasdfafsdfadfa'
+<p>POST /api/v1/google_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user</p>
+<li>creates and returns user if user doesn't exist</li>
+<li>returns the user if user already exists</li>
+<li>send json in the following format:</li>
+<p>
+  {
+    first_name: 'steve',
+    last_name: 'malek',
+    email: 'stevanator@gmail.com',
+    username: 'stevie12',
+    district_id: 1,
+    password: 'asdfsdfasdfasdfafsdfadfa'
+  }
+</p>
+
+<p>POST /api/v1/users - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app</p>
+<li>if user already exists, it updates password</li>
+<li>if user doesn't exist and passed all correct params it creates new user</li>
+<p>
+  {
+    first_name: 'steve',
+    last_name: 'malek',
+    email: 'stevemalek@gmail.com',
+    username: 'stevie12',
+    district_id: neighborhood.id,
+    password: 'bluesky'
+  }
+</p>
+
+<p>GET /api/v1/projects/:project_id/comments - get all comments for a specific projects</p>
+<li>will return comment id, author username, content, and timestamps</li>
+
+<p>  [
+    { 'id': 1,
+      'author': 'bob',
+      'content': 'blah blah',
+      'created_at': 'some time',
+      'updated_at': 'some time'
+    },
+    { 'id': 2,
+      'author': 'dan',
+      'content': 'blah blah',
+      'created_at': 'some time',
+      'updated_at': 'some time'
     }
-  </p>
-
-    <p>POST /api/v1/users - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app</p>
-    <li>if user already exists, it updates password</li>
-    <li>if user doesn't exist and passed all correct params it creates new user</li>
-    <p>
-      {
-        first_name: 'steve',
-        last_name: 'malek',
-        email: 'stevemalek@gmail.com',
-        username: 'stevie12',
-        district_id: neighborhood.id,
-        password: 'bluesky'
-      }
-    </p>
-
-    <p>GET /api/v1/projects/:project_id/comments - get all comments for a specific projects</p>
-    <li>will return comment id, author username, content, and timestamps</li>
-
-    <p>  [
-        { 'id': 1,
-          'author': 'bob',
-          'content': 'blah blah',
-          'created_at': 'some time',
-          'updated_at': 'some time'
-        },
-        { 'id': 2,
-          'author': 'dan',
-          'content': 'blah blah',
-          'created_at': 'some time',
-          'updated_at': 'some time'
-        }
-      ]
-    </p>
+  ]
+</p>

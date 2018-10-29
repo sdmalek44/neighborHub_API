@@ -11,20 +11,29 @@ User.create(first_name: 'Bob',
             username: 'bobjones',
             district_id: 1,
             email: "bobjones@email.com",
-            photo: 'photo.com')
+            photo: 'photo.com',
+            password: 'thing')
 User.create(first_name: 'Mary',
             last_name: 'Smith',
             username: 'marysmith',
             district_id: 2,
             email: "marysmith@email.com",
-            photo: 'photo.com')
+            photo: 'photo.com',
+            password: 'thang')
 User.create(first_name: 'Fred',
             last_name: 'Brown',
             username: 'fredbrown',
             district_id: 3,
             email: "fredbrown@email.com",
-            photo: 'photo.com')
-User.create(first_name: 'Kate',last_name: 'Geen', username: 'kategreen',district_id: 4, email: "kategreen@email.com", photo: 'photo.com', password: 'fun')
+            photo: 'photo.com',
+            password: 'thing')
+User.create(first_name: 'Kate',
+            last_name: 'Geen',
+            username: 'kategreen',
+            district_id: 4,
+            email: "kategreen@email.com",
+            photo: 'photo.com',
+            password: 'fun')
 
 Project.create(title: 'Mow my grass',
               description: 'Mow the entire lawn, front and back')

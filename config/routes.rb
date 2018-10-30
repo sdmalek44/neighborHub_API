@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :neighborhoods, only: [:index, :show]
       resources :projects, only: [:index, :update] do
         get '/comments', to: 'projects/comments#index'
+        post '/comments', to: 'projects/comments#create'
       end
 
       resources :users, only: [:index, :show, :update] do

@@ -6,4 +6,21 @@ class Api::V1::Projects::CommentsController < ApiController
       render json: {message: 'Project Not Found!'}, status: 404
     end
   end
+
+  def create
+    project = Project.find(params[:project_id])
+    comment = project.comments.create(comment_params)
+    if comment.save
+      render json: comment
+    else
+      render json: {message: 'Unable to create comment'}, status: 400
+    end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:user_id, :project_id, :content)
+  end
+
 end

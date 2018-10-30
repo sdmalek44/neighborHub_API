@@ -1,100 +1,113 @@
 <h1>Welcome to Neighborhood</h1>
 
 <h2>Endpoints:</h2>
+
+<h3>Neighborhoods:</h3>
 <p>GET /api/v1/neighborhoods - returns id and name for all neighborhoods(districts)</p>
-<p>GET /api/v1/neighborhoods/:id - returns is and name for one neighborhood, along with all projects for that neighborhood including id, title, description, and photo(url)</p>
-<p>GET /api/v1/projects - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.</p>
-<p>PATCH /api/v1/projects/:id - needs to be in the following format:<br>
+<p>GET /api/v1/neighborhoods/:id - returns id and name for one neighborhood, along with all projects for that neighborhood including id, title, description, and photo(url), neighbor, contact, and resources</p><br>
 
-  { project: {
-                title: "build a statue",
-                description: "We out here building a statue",
-                photo: "https://aphotoofastatue.com/statue",
-                resources: [
-                  {
-                    id: resources[0].id,
-                    name: "500 lbs of concrete",
-                    status: "fulfilled"
-                  },
-                  {
-                    id: resources[1].id,
-                    name: "100 laborers",
-                    status: "fulfilled"
-                  }
-                ]
-              }
-            }</p>
+<h3>Users:</h3>
 <p>GET /api/v1/users - returns id, first_name, last_name, username, district_id, email, and photo url for all users</p>
-<p>PATCH /api/v1/users/:id - updates user info
-
-<p>GET /api/v1/users/:user_id/projects - returns all projects for user with user_id, including resources</p>
-
-<p>POST /api/v1/users/:user_id/projects - needs to be in the following format:<br>
-  {
-    project: {
-      title: "build a statue",
-      description: "We out here building a statue",
-      photo: "https://aphotoofadamnstatue.com/statue",
-      resources: [
-        {
-          name: "500 lbs of concrete",
-        },
-        {
-          name: "100 laborers"
-        }
-      ]
-    }
-  }</p>
-
+<p>GET /api/v1/users/:id - returns info for one user</p>
+<p>PATCH /api/v1/users/:id - updates user info</p>
 <p>POST /api/v1/google_users` - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user</p>
 <li>creates and returns user if user doesn't exist</li>
 <li>returns the user if user already exists</li>
 <li>send json in the following format:</li>
 <p>
-  {
-    first_name: 'steve',
-    last_name: 'malek',
-    email: 'stevanator@gmail.com',
-    username: 'stevie12',
-    district_id: 1,
-    password: 'asdfsdfasdfasdfafsdfadfa'
-  }
-</p>
+  {<br>
+  &emsp;  first_name: 'steve',<br>
+  &emsp;  last_name: 'malek',<br>
+  &emsp;  email: 'stevanator@gmail.com',<br>
+  &emsp;  username: 'stevie12',<br>
+  &emsp;  district_id: 1,<br>
+  &emsp;  password: 'asdfsdfasdfasdfafsdfadfa'<br>
+  }<br>
+</p><br>
 
 <p>POST /api/v1/users - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app</p>
 <li>if user already exists, it updates password</li>
 <li>if user doesn't exist and passed all correct params it creates new user</li>
+<li>send json in the following format:</li>
 <p>
-  {
-    first_name: 'steve',
-    last_name: 'malek',
-    email: 'stevemalek@gmail.com',
-    username: 'stevie12',
-    district_id: neighborhood.id,
-    password: 'bluesky'
-  }
-</p>
+  {<br>
+  &emsp;  first_name: 'steve',<br>
+  &emsp;  last_name: 'malek',<br>
+  &emsp;  email: 'stevemalek@gmail.com',<br>
+  &emsp;  username: 'stevie12',<br>
+  &emsp;  district_id: neighborhood.id,<br>
+  &emsp;  password: 'bluesky'<br>
+  }<br>
+</p><br>
 
-<p>GET /api/v1/projects/:project_id/comments - get all comments for a specific projects</p>
-<li>will return comment id, author username, content, and timestamps</li>
+<h3>Projects</h3>
+<p>GET /api/v1/projects - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.</p>
+<p>PATCH /api/v1/projects/:id - needs to be in the following format:<br>
 
-<p>  [
-    { 'id': 1,
-      'author': 'bob',
-      'content': 'blah blah',
-      'created_at': 'some time',
-      'updated_at': 'some time'
-    },
-    { 'id': 2,
-      'author': 'dan',
-      'content': 'blah blah',
-      'created_at': 'some time',
-      'updated_at': 'some time'
-    }
+  { project: {<br>
+    &emsp; title: "build a statue",<br>
+    &emsp; description: "We out here building a statue",<br>
+    &emsp; photo: "https://aphotoofastatue.com/statue",<br>
+    &emsp; resources: [<br>
+    &emsp;&emsp;          {<br>
+    &emsp;&emsp;&emsp;  id: resources[0].id,<br>
+    &emsp;&emsp;&emsp;  name: "500 lbs of concrete",<br>
+    &emsp;&emsp;&emsp;  status: "fulfilled"<br>
+    &emsp;&emsp;          },<br>
+    &emsp;&emsp;          {<br>
+    &emsp;&emsp;&emsp;   id: resources[1].id,<br>
+    &emsp;&emsp;&emsp;   name: "100 laborers",<br>
+    &emsp;&emsp;&emsp;   status: "fulfilled"<br>
+    &emsp;&emsp;           }<br>
+    &emsp;            ]<br>
+    &nbsp;          }<br>
+    }</p><br>
+
+<p>GET /api/v1/users/:user_id/projects - returns all projects for user with user_id, including resources</p>
+<p>POST /api/v1/users/:user_id/projects</p>
+<li>send json in the following format:</li>
+{ project: {<br>
+  &emsp;title: "build a statue",<br>
+  &emsp;  description: "We out here building a statue",<br>
+  &emsp;  photo: "https://aphotoofadamnstatue.com/statue",<br>
+  &emsp;  resources: [<br>
+  &emsp;&emsp; {<br>
+  &emsp;&emsp;&emsp; name: "500 lbs of concrete",<br>
+  &emsp;&emsp; },<br>
+  &emsp;&emsp; {<br>
+  &emsp;&emsp;&emsp; name: "100 laborers"<br>
+  &emsp;&emsp; }<br>
+  &emsp;  ]<br>
+  &nbsp;}<br>
+}</p><br>
+
+
+<h3>Comments:</h3>
+<p>GET /api/v1/projects/:project_id/comments - get all comments for a specific projects, will return comment id, author username, content, and timestamps</p>
+
+<p>  [<br>
+  &emsp;  { <br>
+  &emsp;&emsp;    'id': 1,<br>
+  &emsp;&emsp;    'author': 'bob',<br>
+  &emsp;&emsp;    'content': 'blah blah',<br>
+  &emsp;&emsp;    'created_at': 'some time',<br>
+  &emsp;&emsp;    'updated_at': 'some time'<br>
+  &emsp;  },<br>
+  &emsp;  { <br>
+  &emsp;&emsp;    'id': 2,<br>
+  &emsp;&emsp;    'author': 'dan',<br>
+  &emsp;&emsp;    'content': 'blah blah',<br>
+  &emsp;&emsp;    'created_at': 'some time',<br>
+  &emsp;&emsp;    'updated_at': 'some time'<br>
+  &emsp;  }<br>
   ]
 </p>
 
 <p>POST /api/v1/projects/:project_id/comments - will create a new comment attached to a specific project and return that comment</p>
-<p>  {'user_id': 3,
-      'content': 'blah blah'}
+<li>send json in the following format:</li>
+<p>  {<br>
+  &emsp;'user_id': 3,<br>
+  &emsp;'content': 'blah blah'<br>
+}<br>
 </p>
+<br><br><br><br>

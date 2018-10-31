@@ -1,4 +1,4 @@
-# :house:	**THE NEIGHBORHOOD API**
+# :house:	**THE NEIGHBORHUB API**
 ## About
 This project is the backend api for a project called NeighborHub-Denver. The deployment link for this repo is https://guarded-garden-68388.herokuapp.com/. The front end can be viewed at https://neighborhood-kickstarter.herokuapp.com.
 ## Endpoints
@@ -121,12 +121,12 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 
 ```json
   {
-    first_name: 'steve',
-    last_name: 'malek',
-    email: 'stevanator@gmail.com',
-    username: 'stevie12',
-    district_id: 1,
-    password: 'asdfsdfasdfasdfafsdfadfa'
+    "first_name": "steve",
+    "last_name": "malek",
+    "email": "stevanator@gmail.com",
+    "username": "stevie12",
+    "district_id": 1,
+    "password": "asdfsdfasdfasdfafsdfadfa"
   }
 ```
 

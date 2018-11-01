@@ -5,11 +5,8 @@ class Api::V1::UsersController < ApiController
   end
 
   def show
-    if User.exists?(params[:id])
-      render json: User.find(params[:id])
-    else
-      render status: 404
-    end
+    results = ShowUserPresenter.new(params).find_user
+    render json: results[:user], status: results[:status]
   end
 
   def create
@@ -18,13 +15,8 @@ class Api::V1::UsersController < ApiController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(oauth_params)
-    if user.save
-      render json: user, status: 200
-    else
-      render json: {message: "Unable to update"}, status: 400
-    end
+    results = UpdateUserPresenter.new(params).validate_action
+    render json: results[:user], status: results[:status]
   end
 
   private

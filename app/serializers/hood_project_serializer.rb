@@ -12,8 +12,15 @@ class HoodProjectSerializer
         photo: project.photo,
         neighbor: project.owner,
         contact: project.contact,
-        resources: project.resources.map {|resource| {id: resource.id, name: resource.name, status: resource.status}}
+        resources: resources_json(project.resources)
       }
     end
   end
+
+  def resources_json(resources)
+    resources.map do |resource|
+      {id: resource.id, name: resource.name, status: resource.status }
+    end
+  end
+
 end

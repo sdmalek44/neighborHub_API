@@ -1,4 +1,7 @@
 # :house:	**THE NEIGHBORHUB API**
+## Contributors
+Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham 
+
 ## About
 This project is the backend api for a project called NeighborHub-Denver. The deployment link for this repo is https://guarded-garden-68388.herokuapp.com/.  
 The front end can be viewed at [NeighborHub](https://neighborhood-kickstarter.herokuapp.com), and the repo for the front end can be found here: https://github.com/dmiller1623/Neighborhood-Kickstarter.  
@@ -10,6 +13,18 @@ There is also another associated backend api that handles sending an email when 
 - [Users](#Users)
 - [Projects](#Projects)
 - [Comments](#Comments)
+
+## Local Setup
+If you would like to set up this project locally please follow these steps:  
+`git clone git@github.com:duranangela/neighborhood.git`  
+`cd neighborhood`   
+`bundle` or `bundle exec`  
+`rake db:{create,migrate,seed}`  
+`rails s`  
+Now the project should be available to view at [localhost:3000](https://localhost:3000/)
+
+If you would like to run the test suite:
+`rspec`
 
 
 ## Neighborhoods

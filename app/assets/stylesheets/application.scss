@@ -1,0 +1,63 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+  background-color: rgb(206, 216, 216);
+  height: 2.0em;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  text-decoration: underline;
+  font-size: 2.5em;
+}
+
+h3 {
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.routes {
+  background-color: rgb(206, 216, 216);
+  padding: 5px;
+  margin: 5px;
+}
+
+span {
+  padding: 5px;
+  margin: 5px;
+}
+
+.json {
+  background-color: rgb(206, 216, 216);
+  width: 50%;
+  padding: 15px;
+}
+
+.main {
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+li {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-image: url("http://4.bp.blogspot.com/-mpLQ5__-L-I/VJRpKS3KtGI/AAAAAAAAMXA/YfYAJql--mU/s1600/star.png")
+}

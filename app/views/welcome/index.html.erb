@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <%= stylesheet_link_tag 'application' %>
+
+  </head>
+  <body>
+
+    <div class="flex-center">
+      <h1>Welcome to NeighborHub API</h1>
+    </div>
+<section class="main">
+
+
+    <h2>Endpoints</h2>
+
+    <h3>Neighborhoods</h3>
+    <li><span class="routes">GET /api/v1/neighborhoods</span><span> - returns id and name for all neighborhoods(districts)</span></li>
+    <li><span class="routes">GET /api/v1/neighborhoods/:id</span><span> - returns id and name for one neighborhood, along with all projects for that neighborhood including id, title, description, and photo(url), neighbor, contact, and resources</span></li>
+
+    <h3>Users</h3>
+    <li><span class="routes">GET /api/v1/users</span><span> - returns id, first_name, last_name, username, district_id, email, and photo url for all users</span></li>
+    <li><span class="routes">GET /api/v1/users/:id</span><span> - returns info for one user</span></li>
+    <li><span class="routes">PATCH /api/v1/users/:id</span><span> - updates user info</span></li>
+    <li><span class="routes">POST /api/v1/google_users`</span><span> - returns id, first_name, last_name, username, neighborhood, email, and photo for google oauth user</span></li>
+    <ul>
+
+      <li>creates and returns user if user doesn't exist</li>
+      <li>returns the user if user already exists</li>
+      <li>send json in the following format:</li>
+    </ul>
+    <p class="json">
+      &emsp;&emsp;{<br>
+      &emsp;&emsp;&emsp;  "first_name": "tom",<br>
+      &emsp;&emsp;&emsp;  "last_name": "malek",<br>
+      &emsp;&emsp;&emsp;  "email": "tominator@gmail.com",<br>
+      &emsp;&emsp;&emsp;  "username": "stome12",<br>
+      &emsp;&emsp;&emsp;  "district_id": 1,<br>
+      &emsp;&emsp;&emsp;  "password": "asdfsdfasdfasdfafsdfadfa"<br>
+      &emsp;&emsp;}<br>
+    </p><br>
+
+    <li><span class="routes">POST /api/v1/users</span><span> - returns id, first_name, last_name, username, neighborhood, email, and photo for user signing up through neighborhood kickstarter app</span></li>
+    <ul>
+      <li>if user already exists, it updates password</li>
+      <li>if user doesn't exist and passed all correct params it creates new user</li>
+      <li>send json in the following format:</li>
+    </ul>
+    <p class="json">
+      &emsp;&emsp;{<br>
+      &emsp;&emsp;&emsp;  "first_name": "bob",<br>
+      &emsp;&emsp;&emsp;  "last_name": "mandrake",<br>
+      &emsp;&emsp;&emsp;  "email": "sbobk@gmail.com",<br>
+      &emsp;&emsp;&emsp;  "username": "bobe12",<br>
+      &emsp;&emsp;&emsp;  "district_id": neighborhood.id,<br>
+      &emsp;&emsp;&emsp;  "password": "bluesky"<br>
+      &emsp;&emsp;}<br>
+    </p><br>
+
+    <h3>Projects</h3>
+    <li><span class="routes">GET /api/v1/projects</span><span> - returns id, title, description, photo url, and resources for every project. Resources include id, name and status.</span></li>
+    <li><span class="routes">PATCH /api/v1/projects/:id</span><span> - needs to be in the following format:</span></li><br>
+      <p class="json">
+        &emsp;&emsp;{
+        &emsp;&emsp;project: {<br>
+        &emsp;&emsp;&emsp; title: "build a statue",<br>
+        &emsp;&emsp;&emsp; description: "We out here building a statue",<br>
+        &emsp;&emsp;&emsp; photo: "https://aphotoofastatue.com/statue",<br>
+        &emsp;&emsp;&emsp; resources: [<br>
+        &emsp;&emsp;&emsp;&emsp;          {<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;  id: resources[0].id,<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;  name: "500 lbs of concrete",<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;  status: "fulfilled"<br>
+        &emsp;&emsp;&emsp;&emsp;          },<br>
+        &emsp;&emsp;&emsp;&emsp;          {<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;   id: resources[1].id,<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;   name: "100 laborers",<br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;   status: "fulfilled"<br>
+        &emsp;&emsp;&emsp;&emsp;           }<br>
+        &emsp;&emsp;&emsp;            ]<br>
+        &emsp;&emsp;&nbsp;          }<br>
+        &emsp;&emsp;}
+      </p><br>
+
+    <li><span class="routes">GET /api/v1/users/:user_id/projects</span><span> - returns all projects for user with user_id, including resources</span></li>
+    <li><span class="routes">POST /api/v1/users/:user_id/projects</span></li>
+    <ul>
+
+      <li>send json in the following format:</li>
+    </ul>
+    <p class="json">
+    &emsp;&emsp;{<br>
+      &emsp;&emsp;&emsp;project: {<br>
+      &emsp;&emsp;&emsp;&emsp;title: "build a statue",<br>
+      &emsp;&emsp;&emsp;&emsp;  description: "We out here building a statue",<br>
+      &emsp;&emsp;&emsp;&emsp;  photo: "https://aphotoofadamnstatue.com/statue",<br>
+      &emsp;&emsp;&emsp;&emsp;  resources: [<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp; {<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; name: "500 lbs of concrete",<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp; },<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp; {<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; name: "100 laborers"<br>
+      &emsp;&emsp;&emsp;&emsp;&emsp; }<br>
+      &emsp;&emsp;&emsp;&emsp;  ]<br>
+      &emsp;&emsp;&emsp;&nbsp;}<br>
+    &emsp;&emsp;}</p><br>
+
+
+    <h3>Comments</h3>
+    <li><span class="routes">GET /api/v1/projects/:project_id/comments</span><span> - get all comments for a specific projects, will return comment id, author username, content, and timestamps</span></li>
+
+    <p class="json">
+      &emsp;&emsp;[<br>
+      &emsp;&emsp;&emsp;  { <br>
+      &emsp;&emsp;&emsp;&emsp;    'id': 1,<br>
+      &emsp;&emsp;&emsp;&emsp;    'author': 'bob',<br>
+      &emsp;&emsp;&emsp;&emsp;    'content': 'blah blah',<br>
+      &emsp;&emsp;&emsp;&emsp;    'created_at': 'some time',<br>
+      &emsp;&emsp;&emsp;&emsp;    'updated_at': 'some time'<br>
+      &emsp;&emsp;&emsp;  },<br>
+      &emsp;&emsp;&emsp;  { <br>
+      &emsp;&emsp;&emsp;&emsp;    'id': 2,<br>
+      &emsp;&emsp;&emsp;&emsp;    'author': 'dan',<br>
+      &emsp;&emsp;&emsp;&emsp;    'content': 'blah blah',<br>
+      &emsp;&emsp;&emsp;&emsp;    'created_at': 'some time',<br>
+      &emsp;&emsp;&emsp;&emsp;    'updated_at': 'some time'<br>
+      &emsp;&emsp;&emsp;  }<br>
+      &emsp;&emsp;]
+    </p><br>
+
+    <li><span class="routes">POST /api/v1/projects/:project_id/comments</span><span> - will create a new comment attached to a specific project and return that comment</span></li>
+    <ul>
+      <li>send json in the following format:</li>
+
+    </ul>
+    <p class="json">  &emsp;&emsp;{<br>
+      &emsp;&emsp;&emsp;'user_id': 3,<br>
+      &emsp;&emsp;&emsp;'content': 'blah blah'<br>
+    &emsp;&emsp;}<br>
+    </p>
+    <br><br><br><br>
+  </section>
+</body>
+</html>

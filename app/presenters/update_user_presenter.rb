@@ -3,7 +3,7 @@ class UpdateUserPresenter
     @params = params
   end
 
-  def validate_action
+  def validate_update
     user = User.find(@params[:id])
     user.update(oauth_params)
     if user.save

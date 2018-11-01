@@ -5,32 +5,18 @@ class Api::V1::UsersController < ApiController
   end
 
   def show
-    results = ShowUserPresenter.new(params).find_user
+    results = ShowUserPresenter.new(params).validate_look_up
     render json: results[:user], status: results[:status]
   end
 
   def create
-    results = CreateUserPresenter.new(params).authenticate_user
+    results = CreateUserPresenter.new(params).validate_creation
     render json: results[:user], status: results[:status]
   end
 
   def update
-    results = UpdateUserPresenter.new(params).validate_action
+    results = UpdateUserPresenter.new(params).validate_update
     render json: results[:user], status: results[:status]
-  end
-
-  private
-
-  def all_required?
-    oauth_params.keys.count == 6
-  end
-
-  def oauth_params
-    params.permit(:first_name, :last_name, :email, :district_id, :username, :password)
-  end
-
-  def authenticate(existing_user)
-    existing_user && existing_user.authenticate(oauth_params[:password])
   end
 
 end

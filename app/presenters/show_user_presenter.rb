@@ -4,7 +4,7 @@ class ShowUserPresenter
     @params = params
   end
 
-  def find_user
+  def validate_look_up
     user = User.find_by(id: @params[:id])
     if user
       status = 200

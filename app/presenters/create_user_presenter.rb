@@ -4,7 +4,7 @@ class CreateUserPresenter
     @params = params
   end
 
-  def authenticate_user
+  def validate_creation
     status = 200
     user = User.find_by_email(oauth_params[:email])
     if !user && !(all_required?) && oauth_params[:username]

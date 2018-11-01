@@ -1,6 +1,12 @@
 # :house:	**THE NEIGHBORHUB API**
+## Contributors
+Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham 
+
 ## About
-This project is the backend api for a project called NeighborHub-Denver. The deployment link for this repo is https://guarded-garden-68388.herokuapp.com/. The front end can be viewed at https://neighborhood-kickstarter.herokuapp.com.
+This project is the backend api for a project called NeighborHub-Denver. The deployment link for this repo is https://guarded-garden-68388.herokuapp.com/.  
+The front end can be viewed at [NeighborHub](https://neighborhood-kickstarter.herokuapp.com), and the repo for the front end can be found here: https://github.com/dmiller1623/Neighborhood-Kickstarter.  
+There is also another associated backend api that handles sending an email when a user creates an account; this repo can be found here: https://github.com/duranangela/NeighborHubEmail.  
+
 ## Endpoints
 
 - [Neighborhoods](#Neighborhoods)
@@ -8,10 +14,22 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 - [Projects](#Projects)
 - [Comments](#Comments)
 
+## Local Setup
+If you would like to set up this project locally please follow these steps:  
+`git clone git@github.com:duranangela/neighborhood.git`  
+`cd neighborhood`   
+`bundle` or `bundle exec`  
+`rake db:{create,migrate,seed}`  
+`rails s`  
+Now the project should be available to view at [localhost:3000](https://localhost:3000/)
+
+If you would like to run the test suite:
+`rspec`
+
 
 ## Neighborhoods
 #### GET /api/v1/neighborhoods
-  - returns id and name for all neighborhoods(districts) will be displayed in alphabetical order
+  - returns id and name for all neighborhoods(districts) and they will be displayed in alphabetical order
   
 ```json
 [
@@ -112,6 +130,17 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 
 #### PATCH /api/v1/users/:id
 - updates user info
+- submit json data in the following format
+```json
+    {
+        "first_name": "steve",
+        "last_name": "malek",
+        "email": "stevanator@gmail.com",
+        "username": "stevie12",
+        "district_id": 1,
+        "password": "asdfsdfasdfasdfafsdfadfa"
+    },
+ ```
 
 #### POST /api/v1/google_users 
 - returns the user if user already exists
@@ -137,12 +166,12 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 
 ```json
 {
-    first_name: 'steve',
-    last_name: 'malek',
-    email: 'stevemalek@gmail.com',
-    username: 'stevie12',
-    district_id: neighborhood.id,
-    password: 'bluesky'
+    "first_name": "steve",
+    "last_name": "malek",
+    "email": "stevemalek@gmail.com",
+    "username": "stevie12",
+    "district_id": 3,
+    "password": "bluesky"
  }
  ```
 
@@ -195,22 +224,24 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 - pass in the :id of an existing resource and the record will be updated
 
 ```json
-{ project: {
-              title: "build a statue",
-              description: "We out here building a statue",
-              photo: "https://aphotoofadamnstatue.com/statue",
-              resources: [
+{ "project": {
+              "title": "build a statue",
+              "description": "We out here building a statue",
+              "photo": "https://aphotoofadamnstatue.com/statue",
+              "resources": [
                 {
-                  id: 1,
-                  status: "fulfilled"
+                  "id": 1,
+                  "status": "fulfilled"
                 },
                 {
-                  id: 2,
-                  name: "100 laborers",
-                  status: "fulfilled"
+                  "id": 2,
+                  "name": "100 laborers",
+                  "status": "fulfilled"
                 },
                 {
-                  name: "15 beers"
+                  "id": 3,
+                  "name": "15 beers",
+                  "status": "fulfilled"
                 }
               ]
             }
@@ -224,16 +255,16 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
 
 ```json
   {
-    project: {
-      title: "build a statue",
-      description: "We out here building a statue",
-      photo: "https://aphotoofastatue.com/statue",
-      resources: [
+    "project": {
+      "title": "build a statue",
+      "description": "We out here building a statue",
+      "photo": "https://aphotoofastatue.com/statue",
+      "resources": [
         {
-          name: "500 lbs of concrete",
+          "name": "500 lbs of concrete",
         },
         {
-          name: "100 laborers"
+          "name": "100 laborers"
         }
       ]
     }
@@ -247,7 +278,7 @@ This project is the backend api for a project called NeighborHub-Denver. The dep
               "resources": [
                 {
                   "id": 1,
-                  "status": 'fulfilled'
+                  "status": "fulfilled"
                 }
               ]
             }

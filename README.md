@@ -15,7 +15,7 @@ Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham
 - [Comments](#Comments)
 
 ## Local Setup
-If you would like to set up this project locally please follow these steps:  
+If you would like to set up this project locally please make sure you have Ruby and Rails installed on your machine first and then follow these steps:  
   - `git clone git@github.com:duranangela/neighborhood.git`  
   - `cd neighborhood`   
   - `bundle` or `bundle exec`  

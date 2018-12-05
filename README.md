@@ -3,7 +3,7 @@
 Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham 
 
 ## About
-  - This project is the backend api for a project called NeighborHub. It is built with Ruby on Rails (Ruby 2.4.1 and Rails 5.2.1). See it live [here](https://guarded-garden-68388.herokuapp.com).  
+  - This project is the backend api for a project called NeighborHub. It is built with Ruby on Rails (Ruby 2.4.1 and Rails 5.2.1). See it live [here](https://neighborhub-api.herokuapp.com).  
   - The front end can be viewed at [NeighborHub](https://neighborhood-kickstarter.herokuapp.com), and the repo for the front end can be found [here](https://github.com/dmiller1623/Neighborhood-Kickstarter).  
   - There is also another associated backend api that handles sending an email when a user creates an account; this repo can be found [here](https://github.com/duranangela/NeighborHubEmail).  
 

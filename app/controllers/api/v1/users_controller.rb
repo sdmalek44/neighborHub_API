@@ -5,8 +5,8 @@ class Api::V1::UsersController < ApiController
   end
 
   def show
-    results = ShowUserPresenter.new(params).validate_look_up
-    render json: results[:user], status: results[:status]
+    results = ShowUserPresenter.new(params[:id]).validate_look_up
+    render json: results.user, status: results.status
   end
 
   def create

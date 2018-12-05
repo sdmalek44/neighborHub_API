@@ -1,13 +1,14 @@
 class CreateUserPresenter
   attr_reader :user,
               :status
+
   def initialize(params)
+    @status = 200
     @params = params
   end
 
   def validate_creation
-    @status = 200
-    @user = User.find_by_email(oauth_params[:email]) || User.find_by_username(oauth_params[:username])
+    @user = User.find_by_username(oauth_params[:username])
     !@user && all_required? ? @user = User.create(oauth_params) : check_for_error
     self
   end

@@ -14,13 +14,5 @@ class Api::V1::ProjectsController < ApiController
   def project_params
     params.require(:project).permit(:title, :description, :photo)
   end
-
-  def resources
-    return params[:project][:resources] if params[:project][:resources]
-    []
-  end
-
-  def resources_valid?(new_resources)
-    resources.length == new_resources.length
-  end
+  
 end

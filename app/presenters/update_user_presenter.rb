@@ -1,18 +1,30 @@
 class UpdateUserPresenter
+  attr_reader :user,
+              :status
+
   def initialize(params)
     @params = params
+    @user = User.find_by(id: @params[:id])
   end
 
   def validate_update
-    user = User.find(@params[:id])
-    user.update(oauth_params)
-    if user.save
-      status = 200
-    else
-      user = {message: "Unable to update"}
-      status = 400
-    end
-    {user: user, status: status}
+    @user.update(oauth_params) if @user
+    set_status
+    self
+  end
+
+  def set_status
+    return set_success if @user && @user.save
+    set_error
+  end
+
+  def set_success
+    @status = 200
+  end
+
+  def set_error
+    @user = {message: "Unable to update"}
+    @status = 400
   end
 
   private

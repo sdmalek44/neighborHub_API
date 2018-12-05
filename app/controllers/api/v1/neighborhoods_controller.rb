@@ -5,8 +5,8 @@ class Api::V1::NeighborhoodsController < ApiController
   end
 
   def show
-    @presenter = ShowNeighborhoodsPresenter.new(params[:id])
-    render json: @presenter.body, status: @presenter.status, serializer: @presenter.serializer
+    results = ShowNeighborhoodsPresenter.new(params[:id])
+    render json: results.body, status: results.status, serializer: results.serializer
   end
 
 end

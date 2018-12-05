@@ -5,8 +5,8 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def update
-    @presenter = UpdateProjectsPresenter.new(params[:id], params[:project][:resources], project_params).evaluate
-    render json: @presenter.body, status: @presenter.status
+    results = UpdateProjectsPresenter.new(params[:id], params[:project][:resources], project_params).evaluate
+    render json: results.body, status: results.status
   end
 
   private
@@ -14,5 +14,5 @@ class Api::V1::ProjectsController < ApiController
   def project_params
     params.require(:project).permit(:title, :description, :photo)
   end
-  
+
 end

@@ -5,12 +5,8 @@ class Api::V1::NeighborhoodsController < ApiController
   end
 
   def show
-    if District.exists?(params[:id])
-      @district = District.find(params[:id])
-      render json: @district, serializer: DistrictProjectSerializer
-    else
-      render status: 404
-    end
+    @presenter = ShowNeighborhoodsPresenter.new(params[:id])
+    render json: @presenter.body, status: @presenter.status, serializer: @presenter.serializer
   end
 
 end

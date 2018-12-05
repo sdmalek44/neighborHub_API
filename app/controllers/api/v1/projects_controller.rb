@@ -5,19 +5,8 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def update
-    project = Project.find(params[:id])
-    new_resources = resources.select do |resource|
-      if resource['id'] && (resource['name'] || resource['status']) && project
-        project.resources.find(resource[:id]).update(resource.permit(:name, :status))
-      elsif resource['name'] && resource['id'].nil? && resource['status'].nil? && project
-        project.resources.create(resource.permit(:name, :status))
-      end
-    end
-    if resources_valid?(new_resources) && project && project.update(project_params)
-      render json: {message: "Successfully Updated #{project.title}!"}
-    else
-      render json: {message: "Invalid Input. Try Again"} , status: 400
-    end
+    @presenter = UpdateProjectsPresenter.new(params[:id], params[:project][:resources], project_params).evaluate
+    render json: @presenter.body, status: @presenter.status
   end
 
   private

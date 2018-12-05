@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApiController
 
   def create
     results = CreateUserPresenter.new(params).validate_creation
-    render json: results[:user], status: results[:status]
+    render json: results.user, status: results.status
   end
 
   def update

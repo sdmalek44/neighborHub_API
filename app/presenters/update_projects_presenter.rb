@@ -21,9 +21,10 @@ class UpdateProjectsPresenter
   def new_resources
     @new_resources ||= @resources.select do |resource|
       if resource['name'] && resource['id'].nil? && resource['status'].nil?
-        @project.resources.create(resource.permit(:name, :status))
+        @project.resources.create(resource.permit(:name, :status)).save
       elsif resource['id'] && (resource['name'] || resource['status'])
-        @project.resources.find(resource[:id]).update(resource.permit(:name, :status))
+        existing_resource = @project.resources.find_by(id: resource[:id])
+        existing_resource.update(resource.permit(:name, :status)) if existing_resource
       end
     end
   end
@@ -33,7 +34,7 @@ class UpdateProjectsPresenter
   end
 
   def update_successful?
-    true if @project && resources_valid? && @project.update(@project_params)
+    @project && resources_valid? && @project.update(@project_params)
   end
 
   def success

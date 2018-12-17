@@ -50,7 +50,7 @@ If you would like to run the test suite:
 
 #### GET /api/v1/neighborhoods/:id
   - returns id and name for one neighborhood, along with all projects for that neighborhood 
-  - each product will include id, title, description, and photo(url)
+  - each project will include id, title, description, and photo(url)
   - `404: Not Found` will be returned if the id is not found
   
 ```json

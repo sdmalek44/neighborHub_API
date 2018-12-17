@@ -5,7 +5,7 @@ class Api::V1::ProjectsController < ApiController
   end
 
   def update
-    results = UpdateProjectsPresenter.new(params[:id], params[:project][:resources], project_params).evaluate
+    results = UpdateProjectsPresenter.new(params[:id], params[:project][:resources], project_params)
     render json: results.body, status: results.status
   end
 

@@ -1,21 +1,20 @@
 class UpdateProjectsPresenter
   attr_reader :project,
-              :body,
               :status
 
   def initialize(project_id, resources, project_params)
     @project = Project.find_by(id: project_id)
     @resources = resources || []
     @project_params = project_params
+    @status = 400
   end
 
-  def evaluate
+  def body
     if update_successful?
       success
     else
       failure
     end
-    self
   end
 
   def new_resources
@@ -38,13 +37,12 @@ class UpdateProjectsPresenter
   end
 
   def success
-    @body = {message: "Successfully Updated #{@project.title}!"}
     @status = 200
+    {message: "Successfully Updated #{@project.title}!"}
   end
 
   def failure
-    @body = {message: "Invalid Input. Try Again"}
-    @status = 400
+    {message: "Invalid Input. Try Again"}
   end
 
 end

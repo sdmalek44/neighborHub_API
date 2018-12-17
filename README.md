@@ -270,20 +270,6 @@ If you would like to run the test suite:
     }
   }
 ```
-- if you just wanted to update a status to fulfilled
-
-```json
-{
-  "project": {
-              "resources": [
-                {
-                  "id": 1,
-                  "status": "fulfilled"
-                }
-              ]
-            }
-}
-```
 
 ## Comments
 #### GET /api/v1/projects/:project_id/comments 

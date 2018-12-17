@@ -1,6 +1,6 @@
 # :house:	**THE NEIGHBORHUB API**
 ## Contributors
-Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham 
+Stephen Malek, Angela Duran
 
 ## About
   - This project is the backend api for a project called NeighborHub. It is built with Ruby on Rails (Ruby 2.4.1 and Rails 5.2.1). See it live [here](https://neighborhub-api.herokuapp.com).  

@@ -30,6 +30,37 @@ describe '/api/v1/users' do
       expect(user[:email]).to eq('stevemalek@gmail.com')
       expect(user[:neighborhood]).to eq(neighborhood.name)
     end
+
+    it 'user exists but correct password given' do
+      neighborhood = create(:district)
+      user = create(:user)
+
+      headers = {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json'
+      }
+
+      body = {
+                first_name: 'Tom',
+                last_name: 'Morello',
+                email: 'tomo@gmail.com',
+                username: 'ToMo',
+                district_id: neighborhood.id,
+                password: 'pass'
+              }
+
+      post '/api/v1/users', params: body.to_json, headers: headers
+
+      user = JSON.parse(response.body, symbolize_names: true)
+
+      expect(user[:id]).to eq(1)
+      expect(user[:first_name]).to eq('Tom')
+      expect(user[:last_name]).to eq('Morello')
+      expect(user[:username]).to eq('ToMo')
+      expect(user[:email]).to eq('tomo@gmail.com')
+      expect(user[:neighborhood]).to eq(neighborhood.name)
+    end
+
     it 'user already exists but through oauth' do
       neighborhood = create(:district)
       user = create(:user)

@@ -3,28 +3,26 @@ class UpdateUserPresenter
               :status
 
   def initialize(params)
+    @status = 400
     @params = params
     @user = User.find_by(id: @params[:id])
   end
 
-  def validate_update
-    @user.update(oauth_params) if @user
-    set_status
-    self
+  def body
+    if user && user.update(oauth_params)
+      set_success
+      user
+    else
+      failure_message
+    end
   end
 
-  def set_status
-    return set_success if @user && @user.save
-    set_error
+  def failure_message
+    {message: "Unable to update"}
   end
 
   def set_success
     @status = 200
-  end
-
-  def set_error
-    @user = {message: "Unable to update"}
-    @status = 400
   end
 
   private

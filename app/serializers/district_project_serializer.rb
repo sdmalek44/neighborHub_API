@@ -2,11 +2,23 @@ class DistrictProjectSerializer < ActiveModel::Serializer
   attributes :id, :name, :projects
 
   def projects
-    hood_projects = Project.select("projects.*", "users.first_name as owner", "users.email as contact")
-                      .joins(:users, :user_projects)
-                      .where("users.district_id = #{object.id} and user_projects.project_role = 0")
-                      .uniq
-    HoodProjectSerializer.new(hood_projects).serialize
+    object.projects_where_owner.map do |project|
+      {
+        id: project.id,
+        title: project.title,
+        description: project.description,
+        photo: project.photo,
+        neighbor: project.owner,
+        contact: project.contact,
+        resources: resources_json(project.resources)
+      }
+    end
+  end
+
+  def resources_json(resources)
+    resources.map do |resource|
+      {id: resource.id, name: resource.name, status: resource.status }
+    end
   end
 
 end

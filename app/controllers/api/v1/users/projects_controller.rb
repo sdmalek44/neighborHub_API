@@ -4,16 +4,8 @@ class Api::V1::Users::ProjectsController < ApiController
   end
 
   def create
-    project = nil
-    user = User.find_by(id: params[:user_id])
-    project = user.projects.create(project_params) if user && resources_valid?
-    new_resources = resources.select { |resource|
-      project.resources.create(resource.permit(:name)).save } if user && project && project.save
-    if resources_valid? && user && project.save
-      render json: {message: "Successfully added project '#{project.title}'!"}
-    else
-      render json: {message: "Invalid request. Try again!"}, status: :bad_request
-    end
+    result = CreateProjectPresenter.new(params[:user_id], project_params, resources)
+    render json: result.body, status: result.status
   end
 
   private
@@ -25,11 +17,6 @@ class Api::V1::Users::ProjectsController < ApiController
   def resources
     return [] unless params[:project][:resources]
     params[:project][:resources]
-  end
-
-  def resources_valid?
-    new_resources = resources.select { |resource| resource.permit(:name).present? }
-    new_resources.length == resources.length
   end
 
 end

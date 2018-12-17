@@ -1,41 +1,51 @@
 class CreateUserPresenter
-  attr_reader :user,
-              :status
+  attr_reader :status
 
   def initialize(params)
-    @status = 200
+    @status = 400
     @params = params
   end
 
-  def validate_creation
-    @user = User.find_by_username(oauth_params[:username])
-    !@user && all_required? ? @user = User.create(oauth_params) : check_for_error
-    self
+  def user
+    @user ||= User.find_by_username(oauth_params[:username])
   end
 
-  def check_for_error
-    if !@user && !(all_required?)
+  def body
+    if !user
+      create_and_return_user
+    else
+      authenticate_and_return_user
+    end
+  end
+
+  def create_and_return_user
+    @user = User.create(oauth_params)
+    if user.save
+      @status = 200
+      user
+    else
       incorrect_params
-    elsif @user && !@user.authenticate(oauth_params[:password])
+    end
+  end
+
+  def authenticate_and_return_user
+    if user && user.authenticate(oauth_params[:password])
+      @status = 200
+      user
+    else
       incorrect_login
     end
   end
 
   def incorrect_params
-    @user = {message: 'Incorrect parameters given!'}
-    @status = 400
+    {message: 'Incorrect parameters given!'}
   end
 
   def incorrect_login
-    @user = {message: 'Incorrect login!'}
-    @status = 400
+    {message: 'Incorrect login!'}
   end
 
   private
-
-  def all_required?
-    oauth_params.keys.count == 6
-  end
 
   def oauth_params
     @params.permit(:first_name, :last_name, :email, :district_id, :username, :password)

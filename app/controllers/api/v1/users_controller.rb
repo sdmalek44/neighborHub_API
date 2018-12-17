@@ -15,8 +15,8 @@ class Api::V1::UsersController < ApiController
   end
 
   def update
-    results = UpdateUserPresenter.new(params).validate_update
-    render json: results.user, status: results.status
+    results = UpdateUserPresenter.new(params)
+    render json: results.body, status: results.status
   end
 
 end

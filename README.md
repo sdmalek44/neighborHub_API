@@ -1,6 +1,6 @@
 # :house:	**THE NEIGHBORHUB API**
 ## Contributors
-Stephen Malek, Angela Duran, Dennis Miller, LeeLee Graham 
+Stephen Malek, Angela Duran
 
 ## About
   - This project is the backend api for a project called NeighborHub. It is built with Ruby on Rails (Ruby 2.4.1 and Rails 5.2.1). See it live [here](https://neighborhub-api.herokuapp.com).  
@@ -50,7 +50,7 @@ If you would like to run the test suite:
 
 #### GET /api/v1/neighborhoods/:id
   - returns id and name for one neighborhood, along with all projects for that neighborhood 
-  - each product will include id, title, description, and photo(url)
+  - each project will include id, title, description, and photo(url)
   - `404: Not Found` will be returned if the id is not found
   
 ```json

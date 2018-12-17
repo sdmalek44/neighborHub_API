@@ -1,29 +1,29 @@
 class UpdateProjectsPresenter
   attr_reader :project,
-              :body,
               :status
 
   def initialize(project_id, resources, project_params)
     @project = Project.find_by(id: project_id)
     @resources = resources || []
     @project_params = project_params
+    @status = 400
   end
 
-  def evaluate
+  def body
     if update_successful?
       success
     else
       failure
     end
-    self
   end
 
   def new_resources
     @new_resources ||= @resources.select do |resource|
       if resource['name'] && resource['id'].nil? && resource['status'].nil?
-        @project.resources.create(resource.permit(:name, :status))
+        @project.resources.create(resource.permit(:name, :status)).save
       elsif resource['id'] && (resource['name'] || resource['status'])
-        @project.resources.find(resource[:id]).update(resource.permit(:name, :status))
+        existing_resource = @project.resources.find_by(id: resource[:id])
+        existing_resource.update(resource.permit(:name, :status)) if existing_resource
       end
     end
   end
@@ -33,17 +33,16 @@ class UpdateProjectsPresenter
   end
 
   def update_successful?
-    true if @project && resources_valid? && @project.update(@project_params)
+    @project && resources_valid? && @project.update(@project_params)
   end
 
   def success
-    @body = {message: "Successfully Updated #{@project.title}!"}
     @status = 200
+    {message: "Successfully Updated #{@project.title}!"}
   end
 
   def failure
-    @body = {message: "Invalid Input. Try Again"}
-    @status = 400
+    {message: "Invalid Input. Try Again"}
   end
 
 end
